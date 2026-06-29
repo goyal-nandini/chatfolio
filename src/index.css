@@ -849,12 +849,9 @@ a {
     display:flex;
     align-items:center;
     gap:10px;
-
     text-decoration:none;
     color:#53bdeb;
-
     padding:6px 0;
-
     transition:.2s;
 }
 

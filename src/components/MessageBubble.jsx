@@ -1,6 +1,6 @@
 // Renders ONE message — user (right, green) or bot (left, gray)
 
-// ── Tick marks for user messages ──
+//  Tick marks for user messages 
 function Ticks({ status }) {
   if (status === "sent") return <span className="ticks">✓</span>;
   if (status === "delivered") return <span className="ticks">✓✓</span>;
@@ -8,7 +8,7 @@ function Ticks({ status }) {
   return null;
 }
 
-// ── Bold text parser: *word* → <strong>word</strong> ──
+//  Bold text parser: *word* → <strong>word</strong> 
 function parseText(text) {
   // Split on *bold* patterns, render bold parts as <strong>
   const parts = text.split(/\*([^*]+)\*/g);
@@ -17,7 +17,7 @@ function parseText(text) {
   );
 }
 
-// ── Document bubble (when bot sends a PDF) ──
+//  Document bubble (when bot sends a PDF) 
 function DocumentBubble({ file }) {
   return (
     <div className="document-bubble">
@@ -31,7 +31,7 @@ function DocumentBubble({ file }) {
   );
 }
 
-// ── Main component ──
+//  Main component 
 function MessageBubble({ message }) {
   const isUser = message.from === "user";
 
