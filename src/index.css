@@ -1,0 +1,866 @@
+/* 
+   CHATFOLIO
+   WhatsApp Inspired Portfolio
+   Part 1/4
+*/
+
+/*  RESET  */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #111b21;
+  color: #e9edef;
+  overflow: hidden;
+}
+
+/*  VARIABLES  */
+
+:root {
+  --bg: #111b21;
+  --header: #202c33;
+  --panel: #202c33;
+  --chat: #0b141a;
+  --received: #202c33;
+  --sent: #005c4b;
+  --border: #2a3942;
+  --text: #e9edef;
+  --secondary: #8696a0;
+  --accent: #00a884;
+  --accent-hover: #06cf87;
+  --blue: #53bdeb;
+
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+/*  ROOT  */
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+/*  APP  */
+
+.app {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #0b141a;
+}
+
+/*  MAIN CHAT WINDOW  */
+
+.chat-window {
+  width: 100%;
+  max-width: 780px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background: #111b21;
+  box-shadow: var(--shadow);
+}
+
+/* Desktop look */
+
+@media (min-width: 900px) {
+  .chat-window {
+    height: 96vh;
+    border-radius: 12px;
+    margin: 18px;
+  }
+}
+
+/*  CHAT WALLPAPER  */
+
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  background-color: #0b141a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%2325393f' stroke-opacity='.15'%3E%3Cpath d='M22 22l8-8m12 34l10-10m30 20l12-12M78 84l14-14M20 88l10-10M94 20l10-10'/%3E%3Ccircle cx='55' cy='40' r='3'/%3E%3Ccircle cx='85' cy='74' r='3'/%3E%3Ccircle cx='34' cy='82' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/*  HEADER  */
+
+.header {
+  height: 72px;
+
+  background: var(--header);
+
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 18px;
+
+  flex-shrink: 0;
+
+  z-index: 5;
+}
+
+/* avatar */
+
+.header-avatar {
+  width: 48px;
+
+  height: 48px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  background: #364147;
+}
+
+.header-avatar img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* info */
+
+.header-info {
+  margin-left: 14px;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.header-info h2 {
+  font-size: 17px;
+
+  font-weight: 600;
+
+  color: var(--text);
+}
+
+.status {
+  font-size: 13px;
+
+  margin-top: 2px;
+
+  color: var(--secondary);
+
+  transition: 0.25s;
+}
+
+.status.online {
+  color: #25d366;
+
+  font-weight: 500;
+}
+
+/*  BOTTOM PANEL  */
+
+.bottom-bar {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 10px 14px;
+
+  gap: 10px;
+
+  background: var(--panel);
+
+  border-top: 1px solid var(--border);
+
+  flex-shrink: 0;
+}
+
+/* 
+   CHATFOLIO
+   WhatsApp Inspired Portfolio
+   Part 2/4
+*/
+
+/*  MESSAGE WRAPPERS  */
+
+.bubble-wrapper {
+  display: flex;
+  width: 100%;
+  animation: messageAppear 0.22s ease;
+}
+
+.bot-wrapper {
+  justify-content: flex-start;
+}
+
+.user-wrapper {
+  justify-content: flex-end;
+}
+
+/*  BUBBLES  */
+
+.bubble {
+  position: relative;
+  max-width: 60%;
+  padding: 10px 12px 8px;
+  border-radius: 10px;
+  word-break: break-word;
+  line-height: 1.55;
+  font-size: 15px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  transition: 0.25s;
+}
+
+/* bot */
+
+.bot-bubble {
+  background: var(--received);
+  border-top-left-radius: 2px;
+}
+
+/* user */
+
+.user-bubble {
+  background: var(--sent);
+  border-top-right-radius: 2px;
+}
+
+/*  BUBBLE TAILS  */
+
+/* left tail */
+
+.bot-bubble::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid var(--received);
+  border-left: 10px solid transparent;
+}
+
+/* right tail */
+
+.user-bubble::before {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid var(--sent);
+  border-right: 10px solid transparent;
+}
+
+/*  MESSAGE TEXT  */
+
+.bubble-text {
+  white-space: pre-wrap;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.bubble-text strong {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/*  META  */
+
+.bubble-meta {
+  margin-top: 6px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+}
+
+/* timestamp */
+
+.timestamp {
+  font-size: 11px;
+  color: rgba(233, 237, 239, 0.68);
+}
+
+/*  TICKS  */
+
+.ticks {
+  font-size: 12px;
+  color: #aebac1;
+  user-select: none;
+  letter-spacing: -1px;
+}
+
+.ticks.blue {
+  color: var(--blue);
+}
+
+/*  LINKS  */
+
+.link-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.link-btn {
+  padding: 7px 14px;
+  border-radius: 18px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.25s;
+}
+
+.link-btn:hover {
+  background: rgba(0, 168, 132, 0.15);
+  color: #fff;
+  border-color: var(--accent-hover);
+}
+
+/*  DOCUMENT BUBBLE  */
+
+.document-bubble {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #182229;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.doc-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.doc-info {
+  flex: 1;
+}
+
+.doc-name {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.doc-size {
+  font-size: 12px;
+  color: var(--secondary);
+  margin-top: 3px;
+}
+
+.doc-download {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background: #24323a;
+  color: #fff;
+  transition: 0.25s;
+}
+
+.doc-download:hover {
+  background: var(--accent);
+}
+
+/*  MESSAGE ANIMATION  */
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 
+   CHATFOLIO
+   WhatsApp Inspired Portfolio
+   Part 3/4
+*/
+
+/*  QUICK REPLIES  */
+
+.quick-replies {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.quick-replies::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex-shrink: 0;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 18px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.25s;
+}
+
+.chip:hover {
+  background: rgba(0, 168, 132, 0.14);
+  color: #fff;
+  border-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.chip:active {
+  transform: scale(0.96);
+}
+
+/*  INPUT  */
+
+.input-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: #2a3942;
+  color: #fff;
+  padding: 13px 18px;
+  border-radius: 26px;
+  font-size: 15px;
+  transition: 0.25s;
+}
+
+.input-field::placeholder {
+  color: #8696a0;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 0 2px rgba(0, 168, 132, 0.25);
+}
+
+/*  SEND BUTTON  */
+
+.send-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  font-size: 18px;
+  transition: 0.25s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-btn:hover {
+  background: #02b488;
+
+  transform: scale(1.05);
+}
+
+.send-btn:active {
+  transform: scale(0.94);
+}
+
+/*  TYPING INDICATOR  */
+
+.typing-bubble {
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  animation: typingBounce 1.1s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+
+  25% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+}
+
+/*  SCROLLBAR  */
+
+.chat-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+  background: #2f3b43;
+
+  border-radius: 8px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+  background: #41515b;
+}
+
+/* Firefox */
+
+.chat-area {
+  scrollbar-width: thin;
+  scrollbar-color: #2f3b43 transparent;
+}
+
+/*  SELECTION  */
+
+::selection {
+  background: rgba(0, 168, 132, 0.3);
+
+  color: #fff;
+}
+
+/*  BUTTON RESET  */
+
+button {
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+a {
+  font-family: inherit;
+}
+
+/* 
+   CHATFOLIO
+   WhatsApp Inspired Portfolio
+   Part 4/4
+*/
+
+/*  SMOOTH TRANSITIONS  */
+
+.header,
+.bottom-bar,
+.bubble,
+.chip,
+.send-btn,
+.input-field,
+.link-btn,
+.doc-download {
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
+}
+
+/*  HOVER LIFT  */
+
+.bubble:hover {
+  transform: translateY(-1px);
+}
+
+/*  IMAGE SAFETY  */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/*  REMOVE TAP HIGHLIGHT  */
+
+button,
+input,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*  FOCUS RING  */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(0, 168, 132, 0.5);
+
+  outline-offset: 2px;
+}
+
+/*  LARGE DESKTOP  */
+
+@media (min-width: 1200px) {
+  .chat-window {
+    max-width: 980px;
+  }
+
+  .chat-area {
+    padding: 26px;
+  }
+
+  .bubble {
+    max-width: 68%;
+  }
+}
+
+/*  TABLET  */
+
+@media (max-width: 900px) {
+  .chat-window {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .chat-area {
+    padding: 18px;
+  }
+
+  .bubble {
+    max-width: 82%;
+  }
+
+  .header {
+    padding: 0 14px;
+  }
+
+  .bottom-bar {
+    padding: 10px;
+  }
+}
+
+/*  MOBILE  */
+
+@media (max-width: 600px) {
+  .header {
+    height: 64px;
+  }
+
+  .header-avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .header-info h2 {
+    font-size: 16px;
+  }
+
+  .status {
+    font-size: 12px;
+  }
+
+  .chat-area {
+    padding: 14px;
+
+    gap: 10px;
+  }
+
+  .bubble {
+    max-width: 88%;
+    font-size: 14px;
+    padding: 9px 10px 7px;
+  }
+
+  .timestamp {
+    font-size: 10px;
+  }
+
+  .quick-replies {
+    gap: 8px;
+  }
+
+  .chip {
+    font-size: 12px;
+    padding: 7px 13px;
+  }
+
+  .input-field {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  .send-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .doc-name {
+    font-size: 13px;
+  }
+
+  .doc-size {
+    font-size: 11px;
+  }
+}
+
+/*  VERY SMALL DEVICES  */
+
+@media (max-width: 380px) {
+  .bubble {
+    max-width: 92%;
+  }
+
+  .header-info h2 {
+    font-size: 15px;
+  }
+
+  .status {
+    font-size: 11px;
+  }
+
+  .send-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/*  LOADING FEEL  */
+
+.bubble {
+  will-change: transform, opacity;
+}
+
+/*  CHAT SPACING  */
+
+.chat-area > *:last-child {
+  margin-bottom: 4px;
+}
+
+/*  LINKS  */
+
+a {
+  color: inherit;
+}
+
+/*  PREVENT OVERFLOW  */
+
+.bubble,
+.document-bubble,
+.link-buttons {
+  overflow-wrap: anywhere;
+}
+
+/*  OPTIONAL GLASS EFFECT  */
+
+.header {
+  backdrop-filter: blur(14px);
+}
+
+.bottom-bar {
+  backdrop-filter: blur(14px);
+}
+
+/*  SUBTLE DIVIDER  */
+
+.bottom-bar {
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/*  CHAT WINDOW SHADOW  */
+
+.chat-window {
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.contact-links{
+    margin-top:12px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.contact-link{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    text-decoration:none;
+    color:#53bdeb;
+
+    padding:6px 0;
+
+    transition:.2s;
+}
+
+.contact-link:hover{
+    color:#8cd8ff;
+    transform:translateX(3px);
+}
+
+/*  END  */
