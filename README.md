@@ -1,16 +1,126 @@
-# React + Vite
+# 💬 Chatfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> An interactive WhatsApp-inspired portfolio built with React.
 
-Currently, two official plugins are available:
+Instead of browsing a traditional portfolio website, visitors can chat with me through a WhatsApp-like interface to explore my skills, projects, resume, and contact information.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- 📱 WhatsApp-inspired UI (Dark Theme)
+- 💬 Interactive chat-based portfolio
+- ✅ WhatsApp message delivery & read receipts
+- ⌨️ Animated typing indicator
+- 🎯 Quick reply chips
+- 📄 Resume document bubble
+- 🔗 Clickable project & contact links
+- 📱 Responsive design
+- ⚛️ Built using React Hooks
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👉 https://nandini-goyal-chatfolio.vercel.app
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React
+- Vite
+- JavaScript (ES6+)
+- CSS3
+
+### React Concepts Used
+
+- useState
+- useEffect
+- useRef
+- Component-based architecture
+- Custom Hooks
+
+---
+
+## 💡 Chat Features
+
+- Auto introductory message
+- Dynamic header status
+  - Last Seen
+  - Online
+  - Typing...
+- WhatsApp-style message flow
+- Animated read receipts
+- Auto scroll to latest message
+- Resume preview
+- Project showcase
+- Contact section
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+│
+├── components/
+│   ├── Header.jsx
+│   ├── ChatArea.jsx
+│   ├── MessageBubble.jsx
+│   ├── InputBar.jsx
+│   ├── QuickReplies.jsx
+│   └── TypingIndicator.jsx
+│
+├── hooks/
+│   └── useChat.js
+│
+├── data/
+│   └── responses.js
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/goyal-nandini/chatfolio.git
+```
+
+Move inside the project
+
+```bash
+cd chatfolio
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run locally
+
+```bash
+npm run dev
+```
+
+---
+
+## 🌱 Future Improvements
+
+- 🤖 AI Mode (LLM-powered conversation)
+- 🎤 Voice Notes
+- 🌗 Light/Dark Theme Toggle
+- ⌨️ Slash Commands
+- 📊 Visitor Analytics
+- 🌍 Multi-language Support
+
+---
+
+⭐ If you enjoyed this project, consider giving it a star!
