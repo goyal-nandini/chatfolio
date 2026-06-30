@@ -21,7 +21,7 @@ export const responses = {
 
   //  Skills 
   skills: {
-    text: `Here's my tech stack 🛠️\n\n*Languages:* Java, Python, JavaScript, SQL\n*Frontend:* React.js, Next.js 15, TypeScript, Tailwind CSS, HTML5, CSS3\n*Backend:* Node.js, Express.js, REST APIs, JWT, OAuth 2.0, Passport.js\n*Databases:* MongoDB, PostgreSQL, Prisma ORM\n*Tools:* Git, Postman, Vercel, Render, Cloudinary, MongoDB Atlas\n*Concepts:* DSA, OOP, System Design Basics, Auth & Authorization`,
+    text: `Here's my tech stack 🛠️\n\n*Languages:* Java, Python, SQL\n*Frontend:* React.js, Tailwind CSS, HTML5, CSS3, Javascript\n*Backend:* Node.js, Express.js, REST APIs, JWT, OAuth 2.0, Passport.js\n*Databases:* MongoDB, PostgreSQL, Prisma ORM\n*Tools:* Git, Github, Postman, VS Code, UNIX Command Line, Cloudinary, Vercel, Render, Cloudinary, MongoDB Atlas`,
     chips: ["Projects", "Resume", "Contact"],
   },
 
