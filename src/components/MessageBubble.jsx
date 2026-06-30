@@ -71,7 +71,7 @@ function MessageBubble({ message }) {
           </div>
         )}
 
-        {message.contacts && message.contacts.length > 0 && (
+        {/* {message.contacts && message.contacts.length > 0 && (
           <div className="contact-links">
             {message.contacts.map((contact, i) => (
               <a
@@ -86,7 +86,7 @@ function MessageBubble({ message }) {
               </a>
             ))}
           </div>
-        )}
+        )} */}
 
         {/* Timestamp + ticks */}
         <div className="bubble-meta">

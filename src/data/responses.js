@@ -77,48 +77,79 @@ export const responses = {
   //   text: `Let's connect! 🤝\n\n📧 nandinikartik1981@gmail.com\n💼 linkedin.com/in/nandini-goyal\n🐙 github.com/nandini-goyal\n🌐 nandini-portfolio.vercel.app\n⚡ leetcode.com/nandini-goyal`,
   //   chips: ["Resume", "Projects", "About Me"],
   // },
-  contact: {
-  text: `Let's connect! 🤝`,
-  contacts: [
+//   contact: {
+//   text: `Let's connect! 🤝`,
+//   contacts: [
+//     {
+//       icon: "📧",
+//       label: "Email",
+//       text: "nandinikartik1981@gmail.com",
+//       url: "mailto:nandinikartik1981@gmail.com",
+//     },
+//     {
+//       icon: "💼",
+//       label: "LinkedIn",
+//       text: "nandini-goyal29",
+//       url: "https://www.linkedin.com/in/nandini-goyal29/",
+//     },
+//     {
+//       icon: "🐙",
+//       label: "GitHub",
+//       text: "goyal-nandini",
+//       url: "https://github.com/goyal-nandini",
+//     },
+//     {
+//       icon: "🌐",
+//       label: "Portfolio",
+//       text: "nandini-goyal-chatfolio",
+//       url: "https://nandini-goyal-chatfolio.vercel.app/",
+//     },
+//     {
+//       icon: "⚡",
+//       label: "LeetCode",
+//       text: "nandini-goyal",
+//       url: "https://leetcode.com/u/nandini-goyal",
+//     },
+//   ],
+//   chips: ["Resume", "Projects", "About Me"],
+// },
+
+//   //  Fallback 
+//   default: {
+//     text: "Hmm, I didn't get that 😅 Try one of these:",
+//     chips: ["About Me", "Skills", "Projects", "Resume", "Contact"],
+//   },
+
+    contact: {
+  text: `Let's connect! 🤝
+
+Feel free to connect with me through any of these:`,
+
+  links: [
     {
-      icon: "📧",
-      label: "Email",
-      text: "nandinikartik1981@gmail.com",
+      label: "📧 Email",
       url: "mailto:nandinikartik1981@gmail.com",
     },
     {
-      icon: "💼",
-      label: "LinkedIn",
-      text: "nandini-goyal29",
-      url: "https://www.linkedin.com/in/nandini-goyal29/",
+      label: "💼 LinkedIn",
+      url: "https://linkedin.com/in/nandini-goyal29",
     },
     {
-      icon: "🐙",
-      label: "GitHub",
-      text: "goyal-nandini",
+      label: "🐙 GitHub",
       url: "https://github.com/goyal-nandini",
     },
     {
-      icon: "🌐",
-      label: "Portfolio",
-      text: "nandini-goyal-chatfolio",
-      url: "https://nandini-goyal-chatfolio.vercel.app/",
+      label: "🌐 Portfolio",
+      url: "https://nandini-goyal-chatfolio.vercel.app",
     },
     {
-      icon: "⚡",
-      label: "LeetCode",
-      text: "nandini-goyal",
+      label: "⚡ LeetCode",
       url: "https://leetcode.com/u/nandini-goyal",
     },
   ],
-  chips: ["Resume", "Projects", "About Me"],
-},
 
-  //  Fallback 
-  default: {
-    text: "Hmm, I didn't get that 😅 Try one of these:",
-    chips: ["About Me", "Skills", "Projects", "Resume", "Contact"],
-  },
+  chips: ["Resume", "Projects", "About Me"],
+}
 };
 
 // 
